@@ -42,8 +42,9 @@
 }
 .btn {
   display: flex;
-  justify-content: center;
-  gap: 3rem;
+  justify-content:space-around;
+  align-items: center;
+  gap: 2rem;
   margin: 1rem;
   padding: 1rem;
 }

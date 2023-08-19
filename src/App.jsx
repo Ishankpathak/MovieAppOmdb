@@ -76,7 +76,7 @@ const App = () => {
             </div>
           ))
         ) : (
-          <div style={{height:"50vh"}}>No Data Found</div>
+          <div style={{ height: "50vh" }}>No Data Found</div>
         )}
       </div>
 
@@ -84,6 +84,7 @@ const App = () => {
         <button onClick={handlePreviousPage} disabled={page <= 1}>
           <i className="fa-solid fa-arrow-left"></i>
         </button>
+        <div>Page :- {page}</div>
         <button onClick={handleNextPage} disabled={page >= totalResults / 10}>
           <i className="fa-solid fa-arrow-right"></i>
         </button>
