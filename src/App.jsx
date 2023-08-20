@@ -3,11 +3,13 @@ import { useState } from "react";
 import noimage from "./assets/noimage.png";
 
 const App = () => {
-  const [searchText, setSearchText] = useState("batman");
+  const [searchText, setSearchText] = useState(
+    localStorage.getItem("searchText") || "batman"
+  );
   const [moviesList, setMovieList] = useState([]);
   const [totalResults, setTotalResults] = useState();
 
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(parseInt(localStorage.getItem("page")) || 1);
 
   const handleSearchBtn = async () => {
     console.log(searchText);
@@ -18,6 +20,9 @@ const App = () => {
     console.log(moviesData.Search);
     setMovieList(moviesData.Search);
     setTotalResults(moviesData.totalResults);
+
+    localStorage.setItem("searchText", searchText);
+    localStorage.setItem("page", page.toString());
   };
 
   const handlePreviousPage = () => {
@@ -49,6 +54,11 @@ const App = () => {
           placeholder="Search Any Movie"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              handleSearchBtn();
+            }
+          }}
         />
         <button onClick={handleSearchBtn}>Show Results</button>
       </div>
